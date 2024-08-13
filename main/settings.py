@@ -91,7 +91,17 @@ WSGI_APPLICATION = 'main.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DATABASE', 'verceldb'),
+        'USER': os.getenv('POSTGRES_USER', 'default'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'sxJ8Z6qrYFLM'),
+        'HOST': os.getenv('POSTGRES_HOST', 'ep-dry-surf-a166k3qg-pooler.ap-southeast-1.aws.neon.tech'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
 }
 
 
